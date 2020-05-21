@@ -23,7 +23,7 @@ class _PurchasePageState extends ModularState<PurchasePage, PurchaseController> 
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () => Modular.to.pushNamed('/purchases/shopping_cart/Vindo da Compra'),
+            onPressed: () => Modular.link.pushNamed('/shopping_cart/Vindo da Compra'),
           ),
         ],
       ),
