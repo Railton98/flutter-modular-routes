@@ -11,16 +11,19 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends ModularState<StorePage, StoreController> {
-  //use 'controller' variable to access controller
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: <Widget>[],
+      appBar: AppBar(title: Text(widget.title)),
+      body: ListView.builder(
+        itemCount: 20,
+        itemBuilder: (context, index) {
+          return ListTile(
+            onTap: () => Modular.to.pushNamed('/products/Loja $index'),
+            title: Text('Loja $index'),
+            subtitle: Text('Melhor Loja!!!'),
+          );
+        },
       ),
     );
   }
