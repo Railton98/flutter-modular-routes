@@ -1,27 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_navigation_routes/app/shared/models/product_model.dart';
 import 'purchase_controller.dart';
 
 class PurchasePage extends StatefulWidget {
-  final String title;
-  const PurchasePage({Key key, this.title = "Purchase"}) : super(key: key);
+  final ProductModel product;
+  const PurchasePage({
+    Key key,
+    @required this.product,
+  }) : super(key: key);
 
   @override
   _PurchasePageState createState() => _PurchasePageState();
 }
 
-class _PurchasePageState
-    extends ModularState<PurchasePage, PurchaseController> {
-  //use 'controller' variable to access controller
-
+class _PurchasePageState extends ModularState<PurchasePage, PurchaseController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: Text(widget.product.name)),
       body: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          Card(
+            margin: const EdgeInsets.all(15.0),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('Produto', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                      Text('${widget.product.id} - ${widget.product.name}', style: TextStyle(fontSize: 16.0)),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('Preço', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                      Text('R\$ ${widget.product.price}', style: TextStyle(fontSize: 16.0)),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
