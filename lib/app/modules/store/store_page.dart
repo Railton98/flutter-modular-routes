@@ -14,7 +14,15 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () => Modular.to.pushNamed('/purchases/shopping_cart/Vindo da Loja'),
+          ),
+        ],
+      ),
       body: ListView.builder(
         itemCount: 20,
         itemBuilder: (context, index) {

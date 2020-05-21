@@ -18,7 +18,15 @@ class _PurchasePageState extends ModularState<PurchasePage, PurchaseController> 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.product.name)),
+      appBar: AppBar(
+        title: Text(widget.product.name),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () => Modular.to.pushNamed('/purchases/shopping_cart/Vindo da Compra'),
+          ),
+        ],
+      ),
       body: Column(
         children: <Widget>[
           Card(
