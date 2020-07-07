@@ -1,10 +1,16 @@
 import 'package:modular_navigation_routes/app/modules/purchase/pages/shopping_cart/shopping_cart_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_navigation_routes/app/modules/purchase/pages/shopping_cart/shopping_cart_page.dart';
+import 'package:modular_navigation_routes/app/shared/stores/cart/cart_store.dart';
+
+import 'widgets/carrinho_lista_produtos/carrinho_lista_produtos_controller.dart';
+import 'widgets/carrinho_total/carrinho_total_controller.dart';
 
 class ShoppingCartModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => CarrinhoListaProdutosController(i.get<CartStore>())),
+        Bind((i) => CarrinhoTotalController()),
         Bind((i) => ShoppingCartController()),
       ];
 
