@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:modular_navigation_routes/app/modules/purchase/pages/shopping_cart/shopping_cart_module.dart';
+import 'package:modular_navigation_routes/app/modules/shopping_cart/shopping_cart_module.dart';
 
 void main() {
   initModule(ShoppingCartModule());

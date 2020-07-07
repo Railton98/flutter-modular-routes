@@ -12,10 +12,10 @@ abstract class _CartStoreBase with Store {
   void addProductToCart(ProductModel product) {
     final index = products.indexWhere((element) => element.product.id == product.id);
 
-    if (index > 0) {
+    if (index >= 0) {
       products.elementAt(index).addItem();
     } else {
-      products.add(ProductCart(product, 1));
+      products.add(ProductCart(product));
     }
   }
 
@@ -26,4 +26,9 @@ abstract class _CartStoreBase with Store {
       products.removeAt(index);
     }
   }
+
+  @computed
+  double get total => products
+      .map((item) => double.parse(item.product.price.replaceAll(',', '.')) * item.quantity)
+      .reduce((value, element) => value + element);
 }

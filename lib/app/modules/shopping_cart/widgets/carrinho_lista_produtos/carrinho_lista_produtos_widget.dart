@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'carrinho_lista_produtos_controller.dart';
 
 class CarrinhoListaProdutosWidget extends StatefulWidget {
@@ -20,46 +21,42 @@ class _CarrinhoListaProdutosWidgetState
 
         return ListView.builder(
           shrinkWrap: true,
-          itemCount: controller.products.length,
+          itemCount: controller.products?.length ?? 0,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (BuildContext context, int index) {
+            final current = controller.products[index];
+
             return Card(
               margin: EdgeInsets.all(5),
               child: ListTile(
-                leading: Image.network(
-                  controller.products[index].product.image,
-                  width: 50,
-                  fit: BoxFit.cover,
+                leading: CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage: NetworkImage(
+                    current.product.image,
+                  ),
                 ),
-                title: Text(controller.products[index].product.name),
-                subtitle: Text("R\$ ${controller.products[index].product.price}"),
+                title: Text(current.product.name),
+                subtitle: Text("R\$ ${current.product.price}"),
                 trailing: Container(
                   width: 120,
                   child: Row(
                     children: [
                       IconButton(
-                          icon: Icon(Icons.remove_circle),
+                          icon: Icon(Icons.remove_circle, color: Colors.red[400]),
                           onPressed: () {
-                            if (controller.products[index].quantity == 1) {
-                              controller.removerProduto(controller.products[index].product);
+                            if (current.quantity == 1) {
+                              controller.removerProduto(current.product);
                             } else {
-                              controller.products[index].removeItem();
+                              current.removeItem();
                             }
                           }),
-                      Observer(
-                        builder: (BuildContext context) {
-                          return Expanded(
-                              child: Text(
-                            "${controller.products[index].quantity}",
-                            textAlign: TextAlign.center,
-                          ));
-                        },
-                      ),
+                      Observer(builder: (BuildContext context) {
+                        return Expanded(child: Text("${current.quantity}", textAlign: TextAlign.center));
+                      }),
                       IconButton(
-                          icon: Icon(Icons.add_circle),
-                          onPressed: () {
-                            controller.products[index].addItem();
-                          })
+                        icon: Icon(Icons.add_circle, color: Colors.blue[400]),
+                        onPressed: () => current.addItem(),
+                      ),
                     ],
                   ),
                 ),

@@ -10,13 +10,16 @@ abstract class _ProductCartBase with Store {
   ProductModel product;
 
   @observable
-  int quantity;
+  int _quantity = 1;
+
+  @computed
+  int get quantity => _quantity;
 
   @action
-  void addItem() => quantity++;
+  void addItem() => _quantity++;
 
   @action
-  void removeItem() => quantity--;
+  void removeItem() => _quantity--;
 
-  _ProductCartBase(this.product, this.quantity) : assert(product != null, 'Produto informado não pode ser null');
+  _ProductCartBase(this.product) : assert(product != null, 'Produto informado não pode ser null');
 }

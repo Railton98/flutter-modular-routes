@@ -12,6 +12,7 @@ abstract class _CarrinhoListaProdutosControllerBase with Store {
 
   _CarrinhoListaProdutosControllerBase(this._cartStore);
 
+  @computed
   ObservableList<ProductCart> get products => _cartStore.products;
 
   void removerProduto(ProductModel produto) {

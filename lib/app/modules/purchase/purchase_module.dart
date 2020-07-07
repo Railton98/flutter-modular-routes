@@ -1,9 +1,8 @@
-import 'package:modular_navigation_routes/app/modules/purchase/purchase_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_navigation_routes/app/modules/purchase/purchase_controller.dart';
 import 'package:modular_navigation_routes/app/modules/purchase/purchase_page.dart';
+import 'package:modular_navigation_routes/app/modules/shopping_cart/shopping_cart_module.dart';
 import 'package:modular_navigation_routes/app/shared/stores/cart/cart_store.dart';
-
-import 'pages/shopping_cart/shopping_cart_module.dart';
 
 class PurchaseModule extends ChildModule {
   @override
